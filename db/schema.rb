@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_035931) do
+ActiveRecord::Schema.define(version: 2022_02_24_042824) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2022_02_24_035931) do
     t.string "heading"
     t.string "description"
     t.string "due_date"
-    t.boolean "is_complete"
     t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -79,8 +78,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_035931) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "heading"
-    t.string "description"
-    t.string "due_date"
+    t.string "description", default: ""
+    t.string "due_date", default: ""
     t.boolean "is_complete"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -91,7 +90,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_035931) do
     t.string "f_name"
     t.string "l_name"
     t.string "email"
-    t.string "key"
+    t.string "key", default: ""
     t.boolean "is_teacher", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,5 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Lecture, type: :model do
-  it { should belong_to(:cohort) }
+  
+  context "association tests" do
+    it { should belong_to(:cohort) }
+  end
+
+  context "validation tests" do
+    it { should validate_presence_of(:meeting_time) }
+    it { should validate_presence_of(:meeting_link) }
+    it { should validate_presence_of(:meeting_name) }
+    it { should validate_presence_of(:meeting_description) }
+    it { should validate_presence_of(:cohort_id) }
+    it { should validate_numericality_of(:cohort_id) }
+  end
+
 end

@@ -11,6 +11,7 @@ RSpec.describe Block, type: :model do
     it { should validate_presence_of(:block_type) }
     it { should validate_presence_of(:block_content) }
     it { should validate_presence_of(:note_id) }
+    it { should validate_numericality_of(:note_id) }
   end
 
 end

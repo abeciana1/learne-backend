@@ -3,4 +3,13 @@ class Course < ApplicationRecord
     has_many :cohorts
     has_many :students, through: :cohorts
     has_many :homeworks
+
+    validates :name, presence: true
+    validates :subject, presence: true
+    validates :description, presence: true
+    validates :price, presence: true
+    validates :teacher_id, presence: true
+    validates_numericality_of :teacher_id
+    validates_numericality_of :price
+    
 end
