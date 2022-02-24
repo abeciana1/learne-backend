@@ -6,4 +6,11 @@ RSpec.describe Block, type: :model do
     it { should belong_to(:note) }
   end
 
+  context "validation tests" do
+    it { should validate_uniqueness_of(:block_data_id) }
+    it { should validate_presence_of(:block_type) }
+    it { should validate_presence_of(:block_content) }
+    it { should validate_presence_of(:note_id) }
+  end
+
 end
