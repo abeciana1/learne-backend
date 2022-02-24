@@ -1,5 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  context "association test" do
+    it { should have_many(:notebooks) }
+    it { should have_many(:tasks) }
+    it { should have_many(:homeworks) }
+    it { should have_many(:cohorts) }
+    it { should have_many(:courses) }
+  end
+
 end
