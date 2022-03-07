@@ -9,8 +9,6 @@ RSpec.describe Task, type: :model do
   context "validation tests" do
     it { should validate_presence_of(:heading) }
     it { should validate_presence_of(:is_complete) }
-    it { should validate_presence_of(:user_id) }
-    it { should validate_numericality_of(:user_id) }
   end
 
 end

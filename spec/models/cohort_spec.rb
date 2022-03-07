@@ -8,11 +8,4 @@ RSpec.describe Cohort, type: :model do
     it { should have_many(:lectures) }
   end
 
-  context "validation tests" do
-    it { should validate_presence_of(:student_id) }
-    it { should validate_presence_of(:course_id) }
-    it { should validate_numericality_of(:student_id) }
-    it { should validate_numericality_of(:course_id) }
-  end
-
 end

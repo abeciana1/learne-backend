@@ -4,7 +4,5 @@ class Note < ApplicationRecord
 
     validates :title, presence: true
     validates :description, presence: true
-    validates :notebook_id, presence: true
-    validates_numericality_of :notebook_id
 
 end

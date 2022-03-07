@@ -15,9 +15,7 @@ RSpec.describe Course, type: :model do
     it { should validate_presence_of(:subject) }
     it { should validate_presence_of(:description) }
     it { should validate_presence_of(:price) }
-    it { should validate_presence_of(:teacher_id) }
     it { should validate_numericality_of(:price) }
-    it { should validate_numericality_of(:teacher_id) }
   end
 
 end

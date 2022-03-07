@@ -11,8 +11,6 @@ RSpec.describe Lecture, type: :model do
     it { should validate_presence_of(:meeting_link) }
     it { should validate_presence_of(:meeting_name) }
     it { should validate_presence_of(:meeting_description) }
-    it { should validate_presence_of(:cohort_id) }
-    it { should validate_numericality_of(:cohort_id) }
   end
 
 end
