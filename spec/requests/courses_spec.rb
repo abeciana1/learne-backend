@@ -13,7 +13,7 @@ RSpec.describe "Courses", type: :request do
 
   end
 
-  context "SHOW PUT PATCH DELETE" do
+  context "POST SHOW PUT PATCH DELETE" do
 
     before(:all) do
       @course = Course.last
