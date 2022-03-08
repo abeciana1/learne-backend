@@ -13,7 +13,7 @@ RSpec.describe "Lectures", type: :request do
     # describe 'CREATE' do
     #   it "should create a new lecture" do
     #     expect {
-    #       post "/lectures", params: {
+    #       post "/api/v1/lectures", params: {
     #         lecture: {
     #           meeting_time: Faker::Date.between(from: Date.today, to: 30.days.from_now).to_s,
     #           meeting_link: "https://www.youtube.com/watch?v=vtPk5IUbdH0",
@@ -29,14 +29,14 @@ RSpec.describe "Lectures", type: :request do
     
     describe 'READ' do
       it "should get a specific lecture" do
-        get "/lectures/#{@lecture.id}"
+        get "/api/v1/lectures/#{@lecture.id}"
         expect(JSON.parse(response.body)["id"]).to eq(@lecture.id)
       end
     end
 
     describe 'UPDATE' do
       it "PUT > should update a whole lecture" do
-        put "/lectures/#{@lecture.id}", params: {
+        put "/api/v1/lectures/#{@lecture.id}", params: {
           lecture: {
             meeting_time: Faker::Date.between(from: Date.today, to: 30.days.from_now).to_s,
             meeting_link: "https://www.youtube.com/watch?v=vtPk5IUbdH0",
@@ -48,7 +48,7 @@ RSpec.describe "Lectures", type: :request do
       end
 
       it "PATCH > should update lecture property" do
-        put "/lectures/#{@lecture.id}", params: {
+        put "/api/v1/lectures/#{@lecture.id}", params: {
           lecture: {
             meeting_description: "updated lecture description",
           }
@@ -61,7 +61,7 @@ RSpec.describe "Lectures", type: :request do
     describe 'DESTROY' do
       it "should delete a lecture" do
         expect {
-          delete "/lectures/#{@lecture.id}"
+          delete "/api/v1/lectures/#{@lecture.id}"
         }.to change {Lecture.count}.by(-1)
         expect(JSON.parse(response.body)).to eq({})
       end

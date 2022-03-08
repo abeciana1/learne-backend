@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :request do
     
     # describe "Create" do
     #   it "POST endpoint works — can create a new user" do
-    #     expect {post "/users", params: {
+    #     expect {post "/api/v1/users", params: {
     #       user: {
     #         f_name: "John",
     #         l_name: "Doe",
@@ -26,7 +26,7 @@ RSpec.describe "Users", type: :request do
 
     describe 'Show' do
       it "GET endpoint for specific user" do
-        get "/users/#{@user.id}"
+        get "/api/v1/users/#{@user.id}"
         expect(JSON.parse(response.body)["id"]).to eq(@user.id)
       end
     end
@@ -34,7 +34,7 @@ RSpec.describe "Users", type: :request do
     describe 'Update' do
       
       it "PUT > update entire user" do
-        put "/users/#{@user.id}", params: {
+        put "/api/v1/users/#{@user.id}", params: {
           user: {
             f_name: "John updated",
             l_name: "Doe updated",
@@ -46,7 +46,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "PATCH > update user property" do
-        put "/users/#{@user.id}", params: {
+        put "/api/v1/users/#{@user.id}", params: {
           user: {
             is_teacher: true,
           }
@@ -58,7 +58,7 @@ RSpec.describe "Users", type: :request do
     
     describe 'Destroy' do
       it "DELETE > delete a specific user" do
-        delete "/users/#{@user.id}"
+        delete "/api/v1/users/#{@user.id}"
         expect(response).to have_http_status(:success)
         expect(JSON.parse(response.body)).to eq({})
       end

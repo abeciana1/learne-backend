@@ -12,7 +12,7 @@ RSpec.describe "Notebooks", type: :request do
     # describe 'CREATE' do
     #   it "should create a new notebook" do
     #     expect { 
-    #       post "/notebooks", params: {
+    #       post "/api/v1/notebooks", params: {
     #         notebook: {
     #           heading: "New Notebook",
     #           description: "notebook description",
@@ -26,14 +26,14 @@ RSpec.describe "Notebooks", type: :request do
 
     describe 'READ' do
       it "should get a notebook" do
-        get "/notebooks/#{@notebook.id}"
+        get "/api/v1/notebooks/#{@notebook.id}"
         expect(JSON.parse(response.body)["id"]).to eq(@notebook.id)
       end
     end
     
     describe 'UPDATE' do
       it "PUT > should update a whole notebook" do
-        put "/notebooks/#{@notebook.id}", params: {
+        put "/api/v1/notebooks/#{@notebook.id}", params: {
           notebook: {
             heading: "Notebook updated",
             description: "notebook description updated",
@@ -43,7 +43,7 @@ RSpec.describe "Notebooks", type: :request do
       end
 
       it "PATCH > should update a whole notebook" do
-        put "/notebooks/#{@notebook.id}", params: {
+        put "/api/v1/notebooks/#{@notebook.id}", params: {
           notebook: {
             heading: "Notebook heading",
           }
@@ -55,7 +55,7 @@ RSpec.describe "Notebooks", type: :request do
     describe 'DESTROY' do
       it "should delete a notebook" do
         expect {
-          delete "/notebooks/#{@notebook.id}"
+          delete "/api/v1/notebooks/#{@notebook.id}"
         }.to change {Notebook.count}.by(-1)
         expect(response).to have_http_status(:success)
       end

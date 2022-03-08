@@ -7,7 +7,7 @@ RSpec.describe "Courses", type: :request do
   context "GET /index" do
 
     it "returns http status" do
-      get "/courses"
+      get "/api/v1/courses"
       expect(response).to have_http_status(:success)
     end
 
@@ -24,7 +24,7 @@ RSpec.describe "Courses", type: :request do
 
     # it "check that a course can be created" do
     #   expect { 
-    #     post "/courses", params: { course: {
+    #     post "/api/v1/courses", params: { course: {
     #       name: "New Course",
     #       subject: "New Course subject",
     #       description: "New Course description",
@@ -37,12 +37,12 @@ RSpec.describe "Courses", type: :request do
     # end
     
     it "Show > returns course" do
-      get "/courses/#{@course.id}"
+      get "/api/v1/courses/#{@course.id}"
       expect(JSON.parse(response.body)["id"]).to eq(@course.id)
     end
 
     it "PUT > update the entire course" do
-      put "/courses/#{@course.id}", params: {
+      put "/api/v1/courses/#{@course.id}", params: {
         course: {
           name: "New Course update",
           subject: "New Course subject update",
@@ -54,7 +54,7 @@ RSpec.describe "Courses", type: :request do
     end
 
     it "PATCH > update property in course" do
-      patch "/courses/#{@course.id}", params: {
+      patch "/api/v1/courses/#{@course.id}", params: {
         course: {
           price: 9.99
         }
@@ -64,7 +64,7 @@ RSpec.describe "Courses", type: :request do
     end
 
     it "DELETE > delete a course" do
-      delete "/courses/#{@course.id}"
+      delete "/api/v1/courses/#{@course.id}"
       expect(response).to have_http_status(:success)
       expect(JSON.parse(response.body)).to eq({})
     end

@@ -12,7 +12,7 @@ RSpec.describe "Notes", type: :request do
     # describe 'Create a new note' do
     #   it "should create a new note" do
     #     expect {
-    #       post "/notes", params: {
+    #       post "/api/v1/notes", params: {
     #         note: {
     #           title: "New note",
     #           description: "New note description",
@@ -26,14 +26,14 @@ RSpec.describe "Notes", type: :request do
     
     describe "READ" do
       it "should get a specific note" do
-        get "/notes/#{@note.id}"
+        get "/api/v1/notes/#{@note.id}"
         expect(JSON.parse(response.body)["id"]).to eq(@note.id)
       end
     end
 
     describe 'UPDATE' do
       it "PUT > update entire note" do
-        put "/notes/#{@note.id}", params: {
+        put "/api/v1/notes/#{@note.id}", params: {
           note: {
             title: "Update note title",
             description: "update note description",
@@ -43,7 +43,7 @@ RSpec.describe "Notes", type: :request do
       end
 
       it "PATCH > update entire note" do
-        put "/notes/#{@note.id}", params: {
+        put "/api/v1/notes/#{@note.id}", params: {
           note: {
             title: "Update note title",
             description: "update note description",
@@ -57,7 +57,7 @@ RSpec.describe "Notes", type: :request do
     describe 'DESTROY' do
       it "DELETE > delete a note" do
         expect { 
-          delete "/notes/#{@note.id}" 
+          delete "/api/v1/notes/#{@note.id}" 
         }.to change {Note.count}.by(-1)
         expect(JSON.parse(response.body)).to eq({})
         expect(response).to have_http_status(:success)

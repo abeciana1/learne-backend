@@ -1,4 +1,4 @@
-class NotesController < ApplicationController
+class Api::V1::NotesController < ApplicationController
 
     def show
         @note = Note.find(params[:id])

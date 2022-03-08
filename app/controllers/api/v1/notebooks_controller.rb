@@ -1,6 +1,6 @@
 require 'pry'
 
-class NotebooksController < ApplicationController
+class Api::V1::NotebooksController < ApplicationController
 
     def show
         @notebook = Notebook.find(params[:id])

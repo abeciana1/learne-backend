@@ -1,6 +1,6 @@
 require 'pry'
 
-class CoursesController < ApplicationController
+class Api::V1::CoursesController < ApplicationController
 
     def index
         @courses = Course.all

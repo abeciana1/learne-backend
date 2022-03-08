@@ -12,7 +12,7 @@ RSpec.describe "Tasks", type: :request do
     # describe 'CREATE' do
     #   it "should create a new task" do
     #     expect {
-    #       post "/tasks", params: {
+    #       post "/api/v1/tasks", params: {
     #         task: {
     #           heading: "Task heading",
     #           description: "Task description",
@@ -27,7 +27,7 @@ RSpec.describe "Tasks", type: :request do
 
     describe 'READ' do
       it "should show a specific task" do
-        get "/tasks/#{@task.id}"
+        get "/api/v1/tasks/#{@task.id}"
         expect(JSON.parse(response.body)["id"]).to eq(@task.id)
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe "Tasks", type: :request do
     describe 'UPDATE' do
 
       it "PUT > update the entire task" do
-        put "/tasks/#{@task.id}", params: {
+        put "/api/v1/tasks/#{@task.id}", params: {
           task: {
             heading: "updated heading",
             description: "updated description",
@@ -47,7 +47,7 @@ RSpec.describe "Tasks", type: :request do
       end
 
       it "PATCH > update task property" do
-        put "/tasks/#{@task.id}", params: {
+        put "/api/v1/tasks/#{@task.id}", params: {
           task: {
             heading: "updated heading",
             description: "new description",
@@ -62,7 +62,7 @@ RSpec.describe "Tasks", type: :request do
 
     describe 'DESTROY' do
       it "DELETE > delete task" do
-        expect { delete "/tasks/#{@task.id}" }.to change {
+        expect { delete "/api/v1/tasks/#{@task.id}" }.to change {
           Task.count
         }.from(Task.count).to(Task.count - 1)
         expect(JSON.parse(response.body)).to eq({})

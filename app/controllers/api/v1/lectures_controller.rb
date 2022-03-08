@@ -1,4 +1,4 @@
-class LecturesController < ApplicationController
+class Api::V1::LecturesController < ApplicationController
 
     def show
         @lecture = Lecture.find(params[:id])
