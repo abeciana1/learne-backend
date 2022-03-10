@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_24_013507) do
+ActiveRecord::Schema.define(version: 2022_02_25_044135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(version: 2022_02_24_013507) do
     t.text "block_content"
     t.string "block_type"
     t.text "note_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cohorts", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,8 +45,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_013507) do
     t.string "heading"
     t.string "description"
     t.string "due_date"
-    t.boolean "is_complete"
-    t.integer "student_id"
+    t.integer "course_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,7 +55,7 @@ ActiveRecord::Schema.define(version: 2022_02_24_013507) do
     t.string "meeting_link"
     t.string "meeting_name"
     t.string "meeting_description"
-    t.integer "course_id"
+    t.integer "cohort_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -72,8 +78,8 @@ ActiveRecord::Schema.define(version: 2022_02_24_013507) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "heading"
-    t.string "description"
-    t.string "due_date"
+    t.string "description", default: ""
+    t.string "due_date", default: ""
     t.boolean "is_complete"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -84,10 +90,12 @@ ActiveRecord::Schema.define(version: 2022_02_24_013507) do
     t.string "f_name"
     t.string "l_name"
     t.string "email"
-    t.string "key"
+    t.string "key", default: ""
     t.boolean "is_teacher", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
+    t.string "reset_password", default: ""
   end
 
 end
