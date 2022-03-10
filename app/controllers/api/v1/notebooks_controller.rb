@@ -4,14 +4,14 @@ class Api::V1::NotebooksController < ApplicationController
 
     def show
         @notebook = Notebook.find(params[:id])
-        render json: @notebook
+        render json: @notebook, each_serializer: NotebookSerializer
     end
 
     def create
         @notebook = Notebook.new(notebook_params)
         if @notebook.valid?
             @notebook.save
-            render json: @notebook, status: :created
+            render json: { notebook: NotebookSerializer.new(@notebook) }, status: :created
         else
             render json: @notebook.errors, status: :unprocessable_entity
         end
@@ -20,7 +20,7 @@ class Api::V1::NotebooksController < ApplicationController
     def update
         @notebook = Notebook.find(params[:id])
         @notebook.update(notebook_params)
-        render json: @notebook
+        render json: @notebook, each_serializer: NotebookSerializer
     end
 
     def destroy

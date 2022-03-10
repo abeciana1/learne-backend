@@ -2,14 +2,14 @@ class Api::V1::TasksController < ApplicationController
 
     def show
         @task = Task.find(params[:id])
-        render json: @task
+        render json: @task, each_serializer: TaskSerializer
     end
 
     def create
         @task = Task.new(task_params)
         if @task.valid?
             @task.save
-            render json: @task, status: :created
+            render json: {task: TaskSerializer.new(@task)}, status: :created
         else
             render json: @task.errors, status: :unprocessable_entity
         end
@@ -18,7 +18,7 @@ class Api::V1::TasksController < ApplicationController
     def update
         @task = Task.find(params[:id])
         @task.update(task_params)
-        render json: @task
+        render json: @task, each_serializer: TaskSerializer
     end
 
     def destroy
