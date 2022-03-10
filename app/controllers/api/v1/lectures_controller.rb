@@ -2,14 +2,14 @@ class Api::V1::LecturesController < ApplicationController
 
     def show
         @lecture = Lecture.find(params[:id])
-        render json: @lecture
+        render json: @lecture, each_serializer: LectureSerializer
     end
 
     def create
         @lecture = Lecture.new(lecture_params)
         if @lecture.valid?
             @lecture.save
-            render json: @lecture, status: :created
+            render json: { lecture: LectureSerializzer.new(@lecture) }, status: :created
         else
             render json: @lecture.errors, status: :unprocessable_entity
         end
@@ -18,7 +18,7 @@ class Api::V1::LecturesController < ApplicationController
     def update
         @lecture = Lecture.find(params[:id])
         @lecture.update(lecture_params)
-        render json: @lecture
+        render json: @lecture, each_serializer: LectureSerializer
     end
 
     def destroy
