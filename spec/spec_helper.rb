@@ -12,11 +12,20 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+# Rails.application.load_seed
+
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.
+  
+  # config.before(:suite) do
+  #   DatabaseCleaner.strategy = :transaction
+  #   DatabaseCleaner.clean_with(:truncation)
+  #   Rails.application.load_seed # loading seeds
+  # end
+
   config.expect_with :rspec do |expectations|
     # This option will default to `true` in RSpec 4. It makes the `description`
     # and `failure_message` of custom matchers include text for helper methods
@@ -26,6 +35,7 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+
   end
 
   # rspec-mocks config goes here. You can use an alternate test double
@@ -46,7 +56,7 @@ RSpec.configure do |config|
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
-=begin
+
   # This allows you to limit a spec run to individual examples or groups
   # you care about by tagging them with `:focus` metadata. When nothing
   # is tagged with `:focus`, all examples get run. RSpec also provides
@@ -77,7 +87,7 @@ RSpec.configure do |config|
   # Print the 10 slowest examples and example groups at the
   # end of the spec run, to help surface which specs are running
   # particularly slow.
-  config.profile_examples = 10
+  config.profile_examples = nil
 
   # Run specs in random order to surface order dependencies. If you find an
   # order dependency and want to debug it, you can fix the order by providing
@@ -90,5 +100,4 @@ RSpec.configure do |config|
   # test failures related to randomization by passing the same `--seed` value
   # as the one that triggered the failure.
   Kernel.srand config.seed
-=end
 end
