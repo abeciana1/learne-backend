@@ -15,7 +15,7 @@ RSpec.describe "Users", type: :request do
           user: {
             f_name: "John",
             l_name: "Doe",
-            email: "john2@example.com",
+            email: "john3@example.com",
             is_teacher: true,
             password: "1234"
           }

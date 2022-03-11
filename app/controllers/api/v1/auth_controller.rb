@@ -1,11 +1,16 @@
 require 'pry'
 
 class Api::V1::AuthController < ApplicationController
+    skip_before_action :authorized, only: [:create]
+
     
     def create
-        binding.pry
         user = User.find_by(email: user_login_params[:email])
+        binding.pry
         if user && user.authenticate(user_login_params[:password])
+            token = encode_token({ user_id: user.id })
+            cookies.signed[:jwt] = {value: token, httponly: true,   expires: 1.hour.from_now}
+            render json: { user: UserSerializer.new(user), jwt: token }, status: :accepted
         else
             render json: { message: "Invalid email or password" }, status: :unauthorized
         end
