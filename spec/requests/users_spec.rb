@@ -9,20 +9,20 @@ RSpec.describe "Users", type: :request do
       @user = User.last
     end
     
-    # describe "Create" do
-    #   it "POST endpoint works — can create a new user" do
-    #     expect {post "/api/v1/users", params: {
-    #       user: {
-    #         f_name: "John",
-    #         l_name: "Doe",
-    #         email: "john@example.com",
-    #         is_teacher: true,
-    #         password: "1234"
-    #       }
-    #     }}.to change {User.count}.from(User.count).to(User.count + 1)
-    #     expect(response).to have_http_status(:created)
-    #   end
-    # end
+    describe "Create" do
+      it "POST endpoint works — can create a new user" do
+        expect {post "/api/v1/users", params: {
+          user: {
+            f_name: "John",
+            l_name: "Doe",
+            email: "john2@example.com",
+            is_teacher: true,
+            password: "1234"
+          }
+        }}.to change {User.count}.from(User.count).to(User.count + 1)
+        expect(response).to have_http_status(:created)
+      end
+    end
 
     describe 'Show' do
       it "GET endpoint for specific user" do

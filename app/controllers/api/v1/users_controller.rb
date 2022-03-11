@@ -16,9 +16,13 @@ class Api::V1::UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.valid?
+            binding.pry
             @user.save
-            render json: { user: UserSerializer.new(@user) }, status: :created
+            token = encode_token(user_id: @user.id)
+            cookies.signed[:jwt] = {value: token, httponly: true,   expires: 1.hour.from_now}
+            render json: { user: UserSerializer.new(@user), jwt: token }, status: :created
         else
+            binding.pry
             render json: @user.errors, status: :unprocessable_entity
         end
     end
